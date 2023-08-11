@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .container {
+        position: relative;
+      }
+      @keyframes explode {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      .explosive-item {
+        display: inline-block;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid #000;
+        animation-fill-mode: forwards;
+        cursor: pointer;
+      }
+
+      .explosive-item:hover {
+        animation: ease-in-out;
+        transform: scale(1.5);
+        opacity: 5;
+      }
+    </style>
+    <title>Electric Vehicle Range Analysis</title>
+    <script
+      type="text/javascript"
+      src="https://public.tableau.com/javascripts/api/tableau-2.min.js"
+    ></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-top: 1.5rem;
+        font-size: 1.5rem;
+        color: #333;
+      }
+
+      .tableau-viz {
+        height: 1000px;
+        margin-top: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      /* Additional styles for a more interactive appearance */
+      .container:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Electric Vehicle Range Analysis</h1>
+    </header>
+    <div class="container">
+      <h2>Tableau Story</h2>
+      <div class="tableau-viz" id="tableauVizStory"></div>
+    </div>
+    <div class="container">
+      <h2>Tableau Dashboard</h2>
+      <div class="tableau-viz" id="tableauVizDashboard"></div>
+    </div>
+    <script type="text/javascript">
+      function initStory() {
+        var options = {
+          hideTabs: true,
+          hideToolbar: true,
+          onFirstInteractive: function () {
+            console.log("Tableau story has loaded.");
+            initDashboard();
+          },
+        };
+
+        var containerDivStory = document.getElementById("tableauVizStory");
+        var urlStory = "{{ tableau_story_url }}"; // URL of the Tableau story
+        var vizStory = new tableau.Viz(containerDivStory, urlStory, options);
+      }
+
+      function initDashboard() {
+        var options = {
+          hideTabs: true,
+          hideToolbar: true,
+          onFirstInteractive: function () {
+            console.log("Tableau dashboard has loaded.");
+          },
+        };
+
+        var containerDivDashboard = document.getElementById(
+          "tableauVizDashboard"
+        );
+        var urlDashboard = "{{ tableau_dashboard_url }}"; // URL of the Tableau dashboard
+        var vizDashboard = new tableau.Viz(
+          containerDivDashboard,
+          urlDashboard,
+          options
+        );
+      }
+      document.addEventListener("DOMContentLoaded", initStory);
+    </script>
+    <div class="container">
+      <div id="tableauViz"></div>
+      <ol>
+        <lh>This project is done by</lh>
+        <br />
+        <li class="explosive-item">Naveen Gowtham.K.T</li>
+        <br />
+        <li class="explosive-item">Sudha.P</li>
+        <br />
+        <li class="explosive-item">Shalini.K</li>
+      </ol>
+    </div>
+  </body>
+</html>
